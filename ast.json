@@ -1,0 +1,1015 @@
+[
+  {
+    "type": "digraph",
+    "id": "BitgoMS",
+    "children": [
+      {
+        "type": "attr_stmt",
+        "target": "graph",
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "label",
+            "eq": "BitGo Microservices Architecture Data Flows"
+          },
+          {
+            "type": "attr",
+            "id": "labelloc",
+            "eq": "top"
+          },
+          {
+            "type": "attr",
+            "id": "fontsize",
+            "eq": 20
+          },
+          {
+            "type": "attr",
+            "id": "fontname",
+            "eq": "Verdana"
+          }
+        ]
+      },
+      {
+        "type": "attr_stmt",
+        "target": "graph",
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "compound",
+            "eq": "true"
+          }
+        ]
+      },
+      {
+        "type": "attr_stmt",
+        "target": "graph",
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "rankdir",
+            "eq": "LR"
+          }
+        ]
+      },
+      {
+        "type": "attr_stmt",
+        "target": "node",
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "shape",
+            "eq": "record"
+          },
+          {
+            "type": "attr",
+            "id": "fontsize",
+            "eq": 10
+          },
+          {
+            "type": "attr",
+            "id": "fontname",
+            "eq": "Verdana"
+          },
+          {
+            "type": "attr",
+            "id": "margin",
+            "eq": 0
+          }
+        ]
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "api_docs"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "auth_service"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "das_rest"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "fiat_indexer"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "full_node"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "full_node_proxy"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "ims"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "indexer"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "indexer_mongo"
+        },
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "shape",
+            "eq": "cylinder"
+          },
+          {
+            "type": "attr",
+            "id": "fontcolor",
+            "eq": "#0684AC"
+          },
+          {
+            "type": "attr",
+            "id": "color",
+            "eq": "#0684AC"
+          }
+        ]
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "indexer_redis"
+        },
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "shape",
+            "eq": "cylinder"
+          },
+          {
+            "type": "attr",
+            "id": "fontcolor",
+            "eq": "#0684AC"
+          },
+          {
+            "type": "attr",
+            "id": "color",
+            "eq": "#0684AC"
+          }
+        ]
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "lending_app"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "lending_daxl"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "mailman"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "routing"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "task_rabbit"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "trade_falcon"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "trade_settlement"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "trust_api_service"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "wallet_platform"
+        },
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "fontcolor",
+            "eq": "#8A6D3B"
+          },
+          {
+            "type": "attr",
+            "id": "color",
+            "eq": "#8A6D3B"
+          }
+        ]
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "wallet_platform_admin"
+        },
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "fontcolor",
+            "eq": "#8A6D3B"
+          },
+          {
+            "type": "attr",
+            "id": "color",
+            "eq": "#8A6D3B"
+          }
+        ]
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "wallet_platform_internal"
+        },
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "fontcolor",
+            "eq": "#8A6D3B"
+          },
+          {
+            "type": "attr",
+            "id": "color",
+            "eq": "#8A6D3B"
+          }
+        ]
+      },
+      {
+        "type": "node_stmt",
+        "node_id": {
+          "type": "node_id",
+          "id": "withdraw_deposit"
+        },
+        "attr_list": []
+      },
+      {
+        "type": "subgraph",
+        "id": "cluster_indexer",
+        "children": [
+          {
+            "type": "attr_stmt",
+            "target": "graph",
+            "attr_list": [
+              {
+                "type": "attr",
+                "id": "label",
+                "eq": "Blockchain Indexing"
+              }
+            ]
+          },
+          {
+            "type": "attr_stmt",
+            "target": "graph",
+            "attr_list": [
+              {
+                "type": "attr",
+                "id": "fontsize",
+                "eq": 14
+              }
+            ]
+          },
+          {
+            "type": "attr_stmt",
+            "target": "graph",
+            "attr_list": [
+              {
+                "type": "attr",
+                "id": "color",
+                "eq": "black"
+              }
+            ]
+          },
+          {
+            "type": "attr_stmt",
+            "target": "graph",
+            "attr_list": [
+              {
+                "type": "attr",
+                "id": "penwidth",
+                "eq": 2
+              }
+            ]
+          },
+          {
+            "type": "node_stmt",
+            "node_id": {
+              "type": "node_id",
+              "id": "ims"
+            },
+            "attr_list": []
+          },
+          {
+            "type": "node_stmt",
+            "node_id": {
+              "type": "node_id",
+              "id": "indexer"
+            },
+            "attr_list": []
+          },
+          {
+            "type": "node_stmt",
+            "node_id": {
+              "type": "node_id",
+              "id": "indexer_mongo"
+            },
+            "attr_list": []
+          },
+          {
+            "type": "node_stmt",
+            "node_id": {
+              "type": "node_id",
+              "id": "indexer_redis"
+            },
+            "attr_list": []
+          }
+        ]
+      },
+      {
+        "type": "subgraph",
+        "id": "cluster_nodes",
+        "children": [
+          {
+            "type": "attr_stmt",
+            "target": "graph",
+            "attr_list": [
+              {
+                "type": "attr",
+                "id": "label",
+                "eq": "Full Nodes"
+              }
+            ]
+          },
+          {
+            "type": "attr_stmt",
+            "target": "graph",
+            "attr_list": [
+              {
+                "type": "attr",
+                "id": "fontsize",
+                "eq": 14
+              }
+            ]
+          },
+          {
+            "type": "attr_stmt",
+            "target": "graph",
+            "attr_list": [
+              {
+                "type": "attr",
+                "id": "color",
+                "eq": "black"
+              }
+            ]
+          },
+          {
+            "type": "attr_stmt",
+            "target": "graph",
+            "attr_list": [
+              {
+                "type": "attr",
+                "id": "penwidth",
+                "eq": 2
+              }
+            ]
+          },
+          {
+            "type": "node_stmt",
+            "node_id": {
+              "type": "node_id",
+              "id": "full_node"
+            },
+            "attr_list": []
+          },
+          {
+            "type": "node_stmt",
+            "node_id": {
+              "type": "node_id",
+              "id": "full_node_proxy"
+            },
+            "attr_list": []
+          }
+        ]
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "auth_service"
+          },
+          {
+            "type": "node_id",
+            "id": "wallet_platform"
+          }
+        ],
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "color",
+            "eq": "red"
+          }
+        ]
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "auth_service"
+          },
+          {
+            "type": "node_id",
+            "id": "wallet_platform_internal"
+          }
+        ],
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "color",
+            "eq": "red"
+          }
+        ]
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "das_rest"
+          },
+          {
+            "type": "node_id",
+            "id": "wallet_platform_internal"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "fiat_indexer"
+          },
+          {
+            "type": "node_id",
+            "id": "das_rest"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "fiat_indexer"
+          },
+          {
+            "type": "node_id",
+            "id": "wallet_platform_internal"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "full_node"
+          },
+          {
+            "type": "node_id",
+            "id": "full_node_proxy"
+          }
+        ],
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "taillabel",
+            "eq": "Registers in"
+          }
+        ]
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "full_node_proxy"
+          },
+          {
+            "type": "node_id",
+            "id": "full_node"
+          }
+        ],
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "taillabel",
+            "eq": "Proxies between"
+          }
+        ]
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "ims"
+          },
+          {
+            "type": "node_id",
+            "id": "indexer_mongo"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "indexer"
+          },
+          {
+            "type": "node_id",
+            "id": "indexer_mongo"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "indexer"
+          },
+          {
+            "type": "node_id",
+            "id": "indexer_redis"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "indexer"
+          },
+          {
+            "type": "node_id",
+            "id": "wallet_platform_internal"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "indexer"
+          },
+          {
+            "type": "node_id",
+            "id": "full_node_proxy"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "lending_app"
+          },
+          {
+            "type": "node_id",
+            "id": "lending_daxl"
+          }
+        ],
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "color",
+            "eq": "red"
+          }
+        ]
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "lending_app"
+          },
+          {
+            "type": "node_id",
+            "id": "wallet_platform_internal"
+          }
+        ],
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "color",
+            "eq": "red"
+          }
+        ]
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "lending_daxl"
+          },
+          {
+            "type": "node_id",
+            "id": "das_rest"
+          }
+        ],
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "color",
+            "eq": "red"
+          }
+        ]
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "lending_daxl"
+          },
+          {
+            "type": "node_id",
+            "id": "wallet_platform_internal"
+          }
+        ],
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "color",
+            "eq": "red"
+          }
+        ]
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "routing"
+          },
+          {
+            "type": "node_id",
+            "id": "auth_service"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "routing"
+          },
+          {
+            "type": "node_id",
+            "id": "trade_settlement"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "routing"
+          },
+          {
+            "type": "node_id",
+            "id": "das_rest"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "task_rabbit"
+          },
+          {
+            "type": "node_id",
+            "id": "mailman"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "trade_falcon"
+          },
+          {
+            "type": "node_id",
+            "id": "das_rest"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "trade_settlement"
+          },
+          {
+            "type": "node_id",
+            "id": "das_rest"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "trade_settlement"
+          },
+          {
+            "type": "node_id",
+            "id": "task_rabbit"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "trade_settlement"
+          },
+          {
+            "type": "node_id",
+            "id": "wallet_platform"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "trade_settlement"
+          },
+          {
+            "type": "node_id",
+            "id": "wallet_platform_internal"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "trade_settlement"
+          },
+          {
+            "type": "node_id",
+            "id": "withdraw_deposit"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "trust_api_service"
+          },
+          {
+            "type": "node_id",
+            "id": "task_rabbit"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "trust_api_service"
+          },
+          {
+            "type": "node_id",
+            "id": "wallet_platform_admin"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "wallet_platform"
+          },
+          {
+            "type": "node_id",
+            "id": "withdraw_deposit"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "wallet_platform_internal"
+          },
+          {
+            "type": "node_id",
+            "id": "ims"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "withdraw_deposit"
+          },
+          {
+            "type": "node_id",
+            "id": "das_rest"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "withdraw_deposit"
+          },
+          {
+            "type": "node_id",
+            "id": "mailman"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "withdraw_deposit"
+          },
+          {
+            "type": "node_id",
+            "id": "trade_falcon"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "withdraw_deposit"
+          },
+          {
+            "type": "node_id",
+            "id": "trust_api_service"
+          }
+        ],
+        "attr_list": []
+      },
+      {
+        "type": "edge_stmt",
+        "edge_list": [
+          {
+            "type": "node_id",
+            "id": "withdraw_deposit"
+          },
+          {
+            "type": "node_id",
+            "id": "wallet_platform_internal"
+          }
+        ],
+        "attr_list": [
+          {
+            "type": "attr",
+            "id": "color",
+            "eq": "red"
+          }
+        ]
+      }
+    ]
+  }
+]

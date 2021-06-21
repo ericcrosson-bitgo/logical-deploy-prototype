@@ -1,0 +1,138 @@
+// You must install graphviz to generate the graphs.  You can do that by:
+//=========================================================================
+// * Linux:
+// apt-get install graphviz
+//
+// * Mac:
+// brew install graphviz
+//
+//
+//
+// Generate and preview PNG image with:
+//=======================================
+// * For Linux:
+// dot -Tpng logical_network_diagram.dot > logical_network_diagram.png && eog logical_network_diagram.png
+//
+// * For Mac:
+// dot -Tpng logical_network_diagram.dot > logical_network_diagram.png && open logical_network_diagram.png
+//
+//
+digraph BitgoMS {
+    graph [label="BitGo Microservices Architecture Data Flows" labelloc=top fontsize=20 fontname="Verdana"];
+
+    compound=true;
+    rankdir=LR;
+
+    //
+    // Defaults
+    //
+    node [shape=record fontsize=10 fontname="Verdana" margin=0];
+
+    // The core packages
+    api_docs
+    auth_service
+    das_rest
+    fiat_indexer
+    full_node
+    full_node_proxy
+    ims
+    indexer
+    indexer_mongo             [shape="cylinder" fontcolor="#0684AC" color="#0684AC"]
+    indexer_redis             [shape="cylinder" fontcolor="#0684AC" color="#0684AC"]
+    lending_app
+    lending_daxl
+    mailman
+    routing
+    task_rabbit
+    trade_falcon
+    trade_settlement
+    trust_api_service
+    wallet_platform           [fontcolor="#8A6D3B" color="#8A6D3B"]
+    wallet_platform_admin     [fontcolor="#8A6D3B" color="#8A6D3B"]
+    wallet_platform_internal  [fontcolor="#8A6D3B" color="#8A6D3B"]
+    withdraw_deposit
+
+
+    subgraph cluster_indexer {
+        label="Blockchain Indexing"
+        fontsize=14
+        color=black;
+        penwidth=2;
+
+        ims;
+        indexer;
+        indexer_mongo;
+        indexer_redis;
+    }
+
+    subgraph cluster_nodes {
+        label="Full Nodes"
+        fontsize=14
+        color=black;
+        penwidth=2;
+
+        full_node;
+        full_node_proxy;
+    }
+
+
+    auth_service              ->  wallet_platform [color="red"];
+    auth_service              ->  wallet_platform_internal [color="red"];
+    das_rest                  ->  wallet_platform_internal;
+    fiat_indexer              ->  das_rest;
+    fiat_indexer              ->  wallet_platform_internal;
+    full_node                 ->  full_node_proxy [taillabel="Registers in"];
+    full_node_proxy           ->  full_node [taillabel="Proxies between"];
+    ims                       ->  indexer_mongo;
+    indexer                   ->  indexer_mongo;
+    indexer                   ->  indexer_redis;
+    indexer                   ->  wallet_platform_internal;
+    indexer                   ->  full_node_proxy;
+    lending_app               ->  lending_daxl [color="red"];
+    lending_app               ->  wallet_platform_internal [color="red"];
+    lending_daxl              ->  das_rest [color="red"];
+    lending_daxl              ->  wallet_platform_internal [color="red"];
+    routing                   ->  auth_service;
+    routing                   ->  trade_settlement;
+    routing                   ->  das_rest;
+    task_rabbit               ->  mailman;
+    trade_falcon              ->  das_rest;
+    trade_settlement          ->  das_rest;
+    trade_settlement          ->  task_rabbit;
+    trade_settlement          ->  wallet_platform;
+    trade_settlement          ->  wallet_platform_internal;
+    trade_settlement          ->  withdraw_deposit;
+    trust_api_service         ->  task_rabbit;
+    trust_api_service         ->  wallet_platform_admin;
+    wallet_platform           ->  withdraw_deposit;
+    wallet_platform_internal  ->  ims;
+    withdraw_deposit          ->  das_rest;
+    withdraw_deposit          ->  mailman;
+    withdraw_deposit          ->  trade_falcon;
+    withdraw_deposit          ->  trust_api_service;
+    withdraw_deposit          ->  wallet_platform_internal [color="red"];
+
+
+// { rank = sink;
+//     Legend [shape=none, margin=0, label=<
+//     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="4">
+//      <TR>
+//       <TD COLSPAN="2"><B>Legend</B></TD>
+//      </TR>
+//      <TR>
+//       <TD>Ingress</TD>
+//       <TD BGCOLOR="#990E15">&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+//      </TR>
+//      <TR>
+//       <TD>Storage</TD>
+//       <TD BGCOLOR="#0684AC"></TD>
+//      </TR>
+//      <TR>
+//       <TD>Wallet Platform</TD>
+//       <TD BGCOLOR="#8A6D3B"></TD>
+//      </TR>
+//     </TABLE>
+//    >];
+//   }
+
+}
