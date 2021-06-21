@@ -1,7 +1,9 @@
 import * as t from 'io-ts'
+import { readonlyNonEmptyArray } from 'io-ts-types'
 
-/**
- * Reference: https://github.com/anvaka/dotparser/blob/master/grammar/dot.pegjs
+/*
+ * Reference:
+ * https://github.com/anvaka/dotparser/blob/master/grammar/dot.pegjs
  */
 
 const Attribute = t.type({
@@ -10,7 +12,7 @@ const Attribute = t.type({
   eq: t.union([t.string, t.number]),
 })
 
-const AttributeStatement = t.type({
+export const AttributeStatement = t.type({
   type: t.literal('attr_stmt'),
   target: t.keyof({
     graph: null,
@@ -20,47 +22,40 @@ const AttributeStatement = t.type({
   // NOTE: this is readonlyNonEmptyArray, but it weirded out the t.recursion
   attr_list: t.readonlyArray(Attribute),
 })
-type AttributeStatement = t.TypeOf<typeof AttributeStatement>
+export type AttributeStatement = t.TypeOf<typeof AttributeStatement>
 
-const EdgeStatement = t.type({
+const NodeID = t.type({
+  type: t.literal('node_id'),
+  id: t.string,
+})
+
+export const EdgeStatement = t.type({
   type: t.literal('edge_stmt'),
-  edge_list: t.tuple([
-    t.type({
-      type: t.string,
-      id: t.string,
-    }),
-    t.type({
-      type: t.string,
-      id: t.string,
-    }),
-  ]),
+  edge_list: t.tuple([NodeID, NodeID]),
   attr_list: t.readonlyArray(Attribute),
 })
-type EdgeStatement = t.TypeOf<typeof EdgeStatement>
+export type EdgeStatement = t.TypeOf<typeof EdgeStatement>
 
-const NodeStatement = t.type({
+export const NodeStatement = t.type({
   type: t.literal('node_stmt'),
-  node_id: t.type({
-    type: t.literal('node_id'),
-    id: t.string,
-  }),
+  node_id: NodeID,
   attr_list: t.readonlyArray(Attribute),
 })
-type NodeStatement = t.TypeOf<typeof NodeStatement>
+export type NodeStatement = t.TypeOf<typeof NodeStatement>
 
-export interface Subgraph {
+interface Subgraph {
   type: 'subgraph'
   id: string
   children: Array<Subgraph | AttributeStatement | EdgeStatement | NodeStatement>
 }
 
-const Subgraph: t.Type<Subgraph> = t.type({
+export const Subgraph: t.Type<Subgraph> = t.type({
   type: t.literal('subgraph'),
   id: t.string,
   children: t.recursion('Subgraph', () => t.readonlyArray(Child)),
 })
 
-type Child = AttributeStatement | EdgeStatement | NodeStatement | Subgraph
+export type Child = AttributeStatement | EdgeStatement | NodeStatement | Subgraph
 
 const Child: t.Type<Child> = t.union([
   AttributeStatement,
@@ -69,10 +64,11 @@ const Child: t.Type<Child> = t.union([
   Subgraph,
 ])
 
-export const Digraph = t.readonlyArray(
+export const Digraph = readonlyNonEmptyArray(
   t.type({
     type: t.literal('digraph'),
     id: t.string,
     children: t.readonlyArray(Child),
   }),
 )
+export type Digraph = t.TypeOf<typeof Digraph>

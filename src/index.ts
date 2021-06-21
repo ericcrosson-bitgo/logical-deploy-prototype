@@ -8,14 +8,15 @@ import * as TE from 'fp-ts/TaskEither'
 import { pipe, flow, Endomorphism, identity } from 'fp-ts/function'
 import * as PathReporter from 'io-ts/lib/PathReporter'
 
-import { Digraph } from './DotAst'
+import { Digraph } from './Digraph'
+import { constructGraph } from './graph'
 
 const dotparser = require('dotparser')
 
 /**
  * The idea:
  *
- * 1. [ ] dot -> service ast
+ * 1. [X] dot -> service ast
  * 2. [ ] service ast -> stacks necessary to stand up
  * 3. [ ] export stacks as helm chart(?)
  */
@@ -60,7 +61,8 @@ const main: T.Task<void> = pipe(
   readFile,
   TE.chainEitherK(parseDotProgram),
   TE.chainEitherK(parseDotAst),
-  TE.map((ast) => console.log(JSON.stringify(ast, null, 2))),
+  TE.map(constructGraph),
+  TE.map((graph) => console.log(graph)),
   TE.getOrElseW(
     flow(
       Console.error,
