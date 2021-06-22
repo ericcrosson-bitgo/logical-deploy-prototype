@@ -43,7 +43,7 @@ export const NodeStatement = t.type({
 })
 export type NodeStatement = t.TypeOf<typeof NodeStatement>
 
-interface Subgraph {
+export interface Subgraph {
   type: 'subgraph'
   id: string
   children: Array<Subgraph | AttributeStatement | EdgeStatement | NodeStatement>
