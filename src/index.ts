@@ -22,7 +22,7 @@ const DOT_SOURCE = './logical_network_diagram.dot'
  * The idea:
  *
  * 1. [X] dot -> service ast
- * 2. [ ] service ast -> stacks necessary to stand up
+ * 2. [X] traverse service ast -> set of stacks necessary to stand up
  * 3. [ ] export stacks as helm chart(?)
  */
 
@@ -102,13 +102,16 @@ const main: T.Task<void> = pipe(
       TE.map(constructGraph),
     ),
   ),
-  TE.map(({ options: { packages }, ast }) => servicesToDeploy(ast, packages)),
-  TE.getOrElseW(
+  TE.map(({ options: { packages }, ast }) =>
+    Array.from(servicesToDeploy(ast, packages)),
+  ),
+  TE.fold(
     flow(
       Console.error,
       IO.chain(() => exit(1)),
       T.fromIO,
     ),
+    flow(Console.log, T.fromIO),
   ),
 )
 
