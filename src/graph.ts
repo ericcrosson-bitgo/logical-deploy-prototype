@@ -1,7 +1,5 @@
-import Graph, * as graph from '@no-day/fp-ts-graph'
-import * as O from 'fp-ts/Option'
-import { identity } from 'fp-ts/function'
-import * as String from 'fp-ts/string'
+import { constVoid } from 'fp-ts/function'
+import Graph from 'graph-data-structure'
 import { match } from 'ts-pattern'
 
 import {
@@ -12,38 +10,52 @@ import {
   NodeStatement,
 } from './Digraph'
 
-type ServiceGraph = Graph<string, string, string>
+export type Graph = ReturnType<typeof Graph>
 
-const insertNode = graph.insertNode(String.Eq)
-const insertEdge = graph.insertEdge(String.Eq)
-
-const constructGraphWorker = (
-  serviceGraph: O.Option<ServiceGraph>,
-  children: ReadonlyArray<Child>,
-): O.Option<ServiceGraph> => {
-  for (const child of children) {
-    const reducer = match<
-      Child,
-      (graph: O.Option<ServiceGraph>) => O.Option<ServiceGraph>
-    >(child)
-      .when(NodeStatement.is, ({ node_id: { id } }) =>
-        O.map(insertNode(id, id)),
-      )
-      .when(EdgeStatement.is, ({ edge_list: [{ id: a }, { id: b }] }) =>
-        O.chain(insertEdge(a, b, 'edge')),
-      )
-      .when(Subgraph.is, ({ children }) =>
-        graph => constructGraphWorker(graph, children)
-      )
-      .otherwise(() => identity)
-
-    serviceGraph = reducer(serviceGraph)
-  }
-
-  return serviceGraph
+export type ServiceGraph = {
+  incoming: Graph
+  outgoing: Graph
 }
 
-export const constructGraph = (digraph: Digraph) => {
-  const serviceGraph: O.Option<ServiceGraph> = O.some(graph.empty())
-  return constructGraphWorker(serviceGraph, digraph[0].children)
+const serviceGraph = (): ServiceGraph => ({
+  incoming: Graph(),
+  outgoing: Graph(),
+})
+
+const constructGraphWorker = (
+  graph: ServiceGraph,
+  children: ReadonlyArray<Child>,
+): ServiceGraph => {
+  for (const child of children) {
+    match(child)
+      .when(NodeStatement.is, ({ node_id: { id } }) => {
+        graph.incoming.addNode(id)
+        graph.outgoing.addNode(id)
+      })
+      .when(EdgeStatement.is, ({ edge_list: [{ id: a }, { id: b }] }) => {
+        graph.incoming.addEdge(b, a)
+        graph.outgoing.addEdge(a, b)
+      })
+      .when(Subgraph.is, ({ children }) =>
+        constructGraphWorker(graph, children),
+      )
+      .otherwise(constVoid)
+  }
+
+  return graph
+}
+
+export const constructGraph = (digraph: Digraph): ServiceGraph => {
+  return constructGraphWorker(serviceGraph(), digraph[0].children)
+}
+
+export const servicesToDeploy = (
+  graph: ServiceGraph,
+  changedPackages: readonly string[],
+) => {
+  // RESUME: gotta make this recursive
+  for (const pkg of changedPackages) {
+    console.log('Package', pkg, 'follows ', graph.incoming.adjacent(pkg))
+    console.log('Package', pkg, 'leads to', graph.outgoing.adjacent(pkg))
+  }
 }
