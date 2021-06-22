@@ -12,7 +12,7 @@ import { withEncode, readonlyNonEmptyArray } from 'io-ts-types'
 import * as PathReporter from 'io-ts/lib/PathReporter'
 
 import { Digraph } from './Digraph'
-import { constructGraph } from './graph'
+import * as G from './graph'
 
 const dotparser = require('dotparser')
 
@@ -49,6 +49,7 @@ type Err =
   | { type: 'unable to read file'; file: string; error: NodeJS.ErrnoException }
   | { type: 'unable to create dot AST'; error: unknown }
   | { type: 'unexpected dot AST'; error: string }
+  | { type: 'unable to construct graph' }
 
 const err: Endomorphism<Err> = identity
 
@@ -89,6 +90,10 @@ const parseDotAst = flow(
   ),
 )
 
+const constructGraph = TE.chainOptionK(() =>
+  err({ type: 'unable to construct graph' }),
+)(G.constructGraph)
+
 const exit = (code: 0 | 1) => () => process.exit(code)
 
 const main: T.Task<void> = pipe(
@@ -99,10 +104,10 @@ const main: T.Task<void> = pipe(
       readFile(DOT_SOURCE),
       TE.chainEitherK(parseDotProgram),
       TE.chainEitherK(parseDotAst),
-      TE.map(constructGraph),
+      constructGraph,
     ),
   ),
-  TE.map((graph) => console.log(graph)),
+  TE.map(({ options: { packages }, ast }) => console.log(ast)),
   TE.getOrElseW(
     flow(
       Console.error,
