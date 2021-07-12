@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/ericcrosson@bitgo.com/try-dotparser.git"
   },
-  "license": "ISC",
+  "license": "UNLICENSED",
   "author": "Eric Crosson <ericcrosson@bitgo.com> (https://github.com/ericcrosson@bitgo.com)",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
